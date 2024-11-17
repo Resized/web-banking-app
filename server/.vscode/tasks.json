@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "docker-build",
+			"label": "docker-build",
+			"platform": "node",
+			"dockerBuild": {
+				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"context": "${workspaceFolder}",
+				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: release",
+			"dependsOn": [
+				"docker-build"
+			],
+			"platform": "node"
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: debug",
+			"dependsOn": [
+				"docker-build"
+			],
+			"dockerRun": {
+				"env": {
+					"DEBUG": "*",
+					"NODE_ENV": "development",
+					"SECRET_ACCESS_TOKEN": "WebBankingAppSecretKey",
+					"SECRET_REFRESH_TOKEN": "WebBankingAppSecretKeyRefresh",
+					"PORT": "3000",
+					"EMAIL_PASSWORD": "uaak cfyn imgo bcxg",
+					"EMAIL_USERNAME": "shai.yarden@gmail.com",
+					"URI": "mongodb+srv://yarden:123123123123@iotdatabase.yposswl.mongodb.net/WebBankingApp?retryWrites=true&w=majority&appName=IOTDataBase",
+				}
+			},
+			"node": {
+				"enableDebugging": true
+			}
+		}
+	]
+}

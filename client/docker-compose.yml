@@ -1,0 +1,10 @@
+services:
+  webbankingclient:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 4173:4173
+    command: [ "npm", "start" ]

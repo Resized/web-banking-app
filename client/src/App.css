@@ -1,0 +1,54 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+
+}
+
+body {
+  background: rgb(74, 113, 152);
+  background: radial-gradient(circle, rgba(74, 113, 152, 1) 0%, rgba(78, 155, 171, 1) 35%, rgba(179, 251, 255, 1) 100%);
+  max-width: 1200px;
+  min-width: 360px;
+  margin: 0 auto;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+li {
+  user-select: none;
+}
+
+h1,
+h2 {
+  /* color: #0d6efd; */
+  color: #0d6efd;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.wrapper.is-open {
+  grid-template-rows: 1fr;
+}
+
+.inner {
+  overflow: hidden;
+}
+
+.table-responsive {
+  transition: height 0.3s ease-out;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}

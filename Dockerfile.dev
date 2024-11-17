@@ -1,0 +1,29 @@
+# Use a Node.js base image
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies for both client and server
+COPY client/package.json client/package-lock.json ./client/
+COPY server/package.json server/package-lock.json ./server/
+RUN cd client && npm install
+RUN cd server && npm install
+
+# Copy the source code
+COPY client ./client
+COPY server ./server
+
+# Install development dependencies
+RUN cd server && npm install --only=development
+
+# Set environment variables
+ENV NODE_ENV=development
+ENV PORT=3000
+
+# Expose the application ports
+EXPOSE 3000 5173
+
+# Use nodemon for development on the server and Vite for the client
+# CMD ["npm run devstart --prefix server"]
+CMD ["sh", "-c", "npm run devstart --prefix server & npm run dev --prefix client"]
